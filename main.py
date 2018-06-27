@@ -7,10 +7,7 @@ pygame.init()
 
 
 clock = pygame.time.Clock()
-center = world.objects.gravobj(200,200,300)
-player = world.objects.gravobj(500,500,400)
-third = world.objects.gravobj(200,500,800)
-gravList = [center,player,third]
+gravList = world.getGravList()
 #cam
 
 #test cases
@@ -59,11 +56,7 @@ while (True != done):
                 else:
                     pass
                     #print(event.key)
-    for i in gravList:
-        i.adjustGrav(gravList)
-    for i in gravList:
-        i.moveonG()
-    
+    world.updateList()
     visual.drawStart()
     visual.drawList(gravList)
     visual.drawEnd()
