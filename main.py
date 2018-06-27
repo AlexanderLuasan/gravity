@@ -1,14 +1,18 @@
 #main function
 import pygame
 import math
+import world
+import visual
+pygame.init()
 
 
-center = gravobj(200,200,300)
-player = gravobj(500,500,400)
-third = gravobj(200,500,800)
+clock = pygame.time.Clock()
+center = world.objects.gravobj(200,200,300)
+player = world.objects.gravobj(500,500,400)
+third = world.objects.gravobj(200,500,800)
 gravList = [center,player,third]
 #cam
-camra = cammera()
+
 #test cases
 '''
 player.pos[1]=40
@@ -37,13 +41,13 @@ while (True != done):
                 fullexit = True
             elif event.type==pygame.KEYDOWN:
                 if event.key == 273: #up
-                    camra.adjPos([0,10])
+                    visual.camra.adjPos([0,15])
                 elif event.key == 274: #down
-                    camra.adjPos([0,-10])
+                    visual.camra.adjPos([0,-15])
                 elif event.key == 276: #left
-                    camra.adjPos([-10,0])
+                    visual.camra.adjPos([15,0])
                 elif event.key == 275: #right
-                    camra.adjPos([10,0])
+                    visual.camra.adjPos([-15,0])
                 elif event.key == 32:
                     print()
                 else:
@@ -55,17 +59,14 @@ while (True != done):
                 else:
                     pass
                     #print(event.key)
-    screen.fill((0,0,0))
     for i in gravList:
         i.adjustGrav(gravList)
     for i in gravList:
         i.moveonG()
-    for i in gravList:
-        image = pygame.Surface([40,40])
-        image.fill((255,255,255))
-        screen.blit(image,pygame.Rect(i.pos[0]-20+camra.getx(),i.pos[1]-20+camra.gety(),40,40))
-        end = i.getGravSpeedData()
-        pygame.draw.line(screen,(255,0,0),[i.pos[0]+camra.getx(),i.pos[1]+camra.gety()],[i.pos[0]+100*end[0]+camra.getx(),i.pos[1]-100*end[1]+camra.gety()],2)
+    
+    visual.drawStart()
+    visual.drawList(gravList)
+    visual.drawEnd()
     pygame.display.flip()
     clock.tick(30)
 pygame.quit()

@@ -1,6 +1,6 @@
 #all the things is space
 import math
-
+BIG_G = 10
 class gravobj():
     def __init__(self,x,y,mass):
         self.x=x
