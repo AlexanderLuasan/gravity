@@ -19,17 +19,40 @@ class cammera():
         return self.x
     def gety(self):
         return self.y
+
+#calculate grav, break it into several sub functions
+#moveonG, break into two steps, calc accel and movement
+#self.image, self.rect, self.radius (inscribed)
+
+
 class gravobj():
     def __init__(self,x,y,mass):
-        self.x=x
-        self.y=y
         self.pos=[x,y]
         self.mass = mass
         self.gravP=[0,0]
         self.grav=[0,0]
+        self.image = None
+        self.size = [0,0]
+
+    def assignImage(self, myimage, size):
+        self.image = myimage
+        self.size = size
+    
+    def setPos(self, pos):
+        self.pos = pos
+    def setGrav(self, grav):
+        self.grav = grav
+
     def calulateGrav(self,gravObj):
         distance=((self.pos[0]- gravObj.pos[0])**2+(self.pos[1]- gravObj.pos[1])**2)**.5
-        
+        direction = self.calculateDirectionAngle(gravObj)
+        if direction == [0,0]:
+            return [0,0]
+        totalmass = self.mass + gravObj.mass
+        force = BIG_G*(totalmass/distance**2)/self.mass
+        return([force*math.cos(direction),-force*math.sin(direction)])
+
+    def calculateDirectionAngle(self,gravObj):
         try:
             direction=math.atan((self.pos[1] - gravObj.pos[1])/(self.pos[0] - gravObj.pos[0]))
             if self.pos[0] - gravObj.pos[0]>0:
@@ -43,19 +66,9 @@ class gravobj():
                 direction = math.pi/2
             elif self.pos[1]- gravObj.pos[1]==0:
                 return([0,0])
-        totalmass=self.mass + gravObj.mass
-        #printout
-        '''
-        print("distance is ",distance)
-        if direction != None:
-            print("direction is ",direction)
-            print("pos is" , gravObj.pos,"deg",direction*180.0/math.pi)
-        else:
-            print("direction is none")
-        print("totalmass is ",totalmass)
-        '''
-        force = BIG_G*(totalmass/distance**2)/self.mass
-        return([force*math.cos(direction),-force*math.sin(direction)])
+        
+        return direction
+
     def adjustGrav(self,gravObjList):
         self.gravP = [0,0]
         for obj in gravObjList:
@@ -67,10 +80,15 @@ class gravobj():
     def getGravSpeedData(self):
         return self.grav
     def moveonG(self):
+        self.changeVelocity()
+        self.changePosition()
+    def changeVelocity(self):
         self.grav[0]+=self.gravP[0]
         self.grav[1]+=self.gravP[1]
+    def changePosition(self):
         self.pos[0]+=self.grav[0]
         self.pos[1]-=self.grav[1]
+
             
 
         
