@@ -1,0 +1,56 @@
+theme:
+	gravity
+		everything has mass and pull one zero(could be player)
+
+	resourse management
+	start a level with some amount of stuff then get to a goal with a bit spare
+
+things in space:
+	Suns
+	planets
+		gas giant
+		rock
+		rings
+	asteroirds
+	nebula
+	commets
+	mediors
+	aliens with lasers and missles
+
+
+
+universal class:
+	mass 
+	position
+	gravity force vector
+	gravity speed vector
+
+Player:
+	resourse:
+		hull/armmor/health count of physical damage
+		sheild made from energy temporary recharges heat/energey
+		energy spend for light life support
+		fuel with energey is spend for movment
+		food ticks down over time
+
+	spend:
+		map cost energey
+		sonnar on/off
+		fire engins fuel
+		hit objects hull
+		though suns corona and planets anmoherer sheild
+		recahrge sheild with energy
+		
+
+
+
+
+
+	movment stats:
+
+		rotation speed in degress perframe or maybe per 10 or 60 frames
+		4 enges on in each directions with an arry of burn levels/percents
+			rear 10 or 5 left 3 right 3 front 5
+			note mass should be taken into acount
+
+
