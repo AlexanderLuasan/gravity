@@ -16,5 +16,4 @@ def updateList():
         i.adjustGrav(gravList)
     for i in gravList:
         i.moveonG()
-        print(i.gravP[1])
 
