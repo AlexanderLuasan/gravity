@@ -48,6 +48,8 @@ while (True != done):
                 elif event.key == 119:
                     world.player_charecter.fireForwardEngine()
                     print("test")
+                elif event.key == 115:
+                    world.player_charecter.fireReverseEngine()
                 elif event.key == 97:
                     world.player_charecter.fireLeftTuringinEngine()
                 elif event.key == 100:

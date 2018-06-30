@@ -43,7 +43,10 @@ class playerCharecter(objects.gravobj):
     def fireForwardEngine(self):
         self.grav[0] += objects.math.cos(self.forward_axis)
         self.grav[1] += objects.math.sin(self.forward_axis)
-
+    
+    def fireReverseEngine(self):
+        self.grav[0] -= objects.math.cos(self.forward_axis)
+        self.grav[1] -= objects.math.sin(self.forward_axis)
     
     def fireLeftTuringinEngine(self):
         self.rotational_speed -= self.turnspeed
