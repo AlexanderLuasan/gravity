@@ -18,5 +18,11 @@ def drawList(gravList):
         screen.blit(image,pygame.Rect(i.pos[0]-20+camra.getx(),i.pos[1]-20+camra.gety(),40,40))
         end = i.getGravSpeedData()
         pygame.draw.line(screen,(255,0,0),[i.pos[0]+camra.getx(),i.pos[1]+camra.gety()],[i.pos[0]+100*end[0]+camra.getx(),i.pos[1]-100*end[1]+camra.gety()],2)
+        try:
+            end = i.forward_axis_to_cords()
+            pygame.draw.line(screen,(0,255,0),[i.pos[0]+camra.getx(),i.pos[1]+camra.gety()],[i.pos[0]+50*end[0]+camra.getx(),i.pos[1]-50*end[1]+camra.gety()],2)
+        except:
+            pass
+
 def drawEnd():
-    pygame.display.flip()    
+    pygame.display.flip()
