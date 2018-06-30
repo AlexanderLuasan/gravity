@@ -47,7 +47,7 @@ while (True != done):
                     visual.camra.adjPos([-15,0])
                 elif event.key == 119:
                     world.player_charecter.fireForwardEngine()
-                    print("hi!")
+                    print("test")
                 elif event.key == 97:
                     world.player_charecter.fireLeftTuringinEngine()
                 elif event.key == 100:
