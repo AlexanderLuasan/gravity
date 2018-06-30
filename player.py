@@ -28,19 +28,21 @@ Player:
 
 """
 
+#print(isinstance(objects.gravobj(1,1,1), int))
+
 class playerCharecter(objects.gravobj):
-    def __init__(self,x,y,mass, initial_hull):
-        super.__init__()
+    def __init__(self,x,y,mass):
+        super().__init__(x,y,mass)
         self.hull_health = 1
         self.shield = 0
         self.rotational_speed = 0 #im going to measure this in radians per 10 frames. Positive value = counter clockwise, negative value = clockwise
         self.forward_axis = objects.math.pi / 2 #this is what "forward" is relative to the player's ship measured in radians
         self.turnspeed = 1
-        self.forwardspeed = 1 #these can be upgraded by purchases later
+        self.forwardspeed = 1 #these last two can be upgraded by purchases later
     
     def fireForwardEngine(self):
-        self.gravP[0] += objects.math.cos(self.forward_axis)
-        self.gravP[1] += objects.math.sin(self.forward_axis)
+        self.grav[0] += objects.math.cos(self.forward_axis)
+        self.grav[1] += objects.math.sin(self.forward_axis)
 
     
     def fireLeftTuringinEngine(self):
@@ -50,12 +52,18 @@ class playerCharecter(objects.gravobj):
         self.rotational_speed += self.turnspeed
     
     def moveonG(self):
-        super.moveonG()
+        super().moveonG()
         self.forward_axis += self.rotational_speed/10
 
+if __name__ == "__main__":
+    me = playerCharecter(1,1,1)
 
-    
 #wasd = 119, 97, 115, 100
 
     
 
+#you know what might be fun? super limited fuel, you have a line that shows your tradjectory
+#can conserve fuel by flinging yourself with physics
+#maybe you can place tempory mass objects? like, create a gravton field for x energy 
+#that acts like a planet of y mass, so you can do the aforementioned physics flinging?
+#maybe you can create proximity mines that are affected by physics? so you can fling them at aliens?
