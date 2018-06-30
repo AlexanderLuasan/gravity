@@ -45,22 +45,30 @@ while (True != done):
                     visual.camra.adjPos([15,0])
                 elif event.key == 275: #right
                     visual.camra.adjPos([-15,0])
-                elif event.key == 119:
-                    world.player_charecter.fireForwardEngine()
+                elif event.key == 119: #w,a,s,d = 119, 97, 115, 100
+                    world.player_charecter.engines_on[0] += 1
                 elif event.key == 115:
-                    world.player_charecter.fireReverseEngine()
+                    world.player_charecter.engines_on[0] -= 1
                 elif event.key == 97:
-                    world.player_charecter.fireLeftTuringinEngine()
+                    world.player_charecter.engines_on[1] += 1
                 elif event.key == 100:
-                    world.player_charecter.fireRightTurningEngine()
+                    world.player_charecter.engines_on[1] -= 1
                 elif event.key == 32:
                     print()
                 else:
                     print(event.key)
-                
+
             elif event.type == pygame.KEYUP:
                 if event.key == 0:
                     pass
+                elif event.key == 119: #w,a,s,d = 119, 97, 115, 100
+                    world.player_charecter.engines_on[0] -= 1
+                elif event.key == 115:
+                    world.player_charecter.engines_on[0] += 1
+                elif event.key == 97:
+                    world.player_charecter.engines_on[1] -= 1
+                elif event.key == 100:
+                    world.player_charecter.engines_on[1] += 1
                 else:
                     pass
                     #print(event.key)

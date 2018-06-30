@@ -35,28 +35,29 @@ class playerCharecter(objects.gravobj):
         super().__init__(x,y,mass)
         self.hull_health = 1
         self.shield = 0
-        self.rotational_speed = 0 #im going to measure this in radians per 10 frames. Positive value = counter clockwise, negative value = clockwise
+        self.rotational_speed = 0 #im going to measure this in radians per frames. Positive value = counter clockwise, negative value = clockwise
         self.forward_axis = objects.math.pi / 2 #this is what "forward" is relative to the player's ship measured in radians
-        self.turnspeed = .1
-        self.forwardspeed = .1 #these last two can be upgraded by purchases later
+        self.max_turn_speed = .01
+        self.max_forward_speed = .01 #these last two can be upgraded by purchases later
+        self.engines_on = [0,0] #represents the forward/back, and left/right engines.
+        #0 = off, value = percentage of max burn, 1 being max. positive = forward/
     
     def forward_axis_to_cords(self):
         return [objects.math.cos(self.forward_axis),objects.math.sin(self.forward_axis)]
+    
+    def adjustGrav(self,gravObjList):
+        super().adjustGrav(gravObjList)
+        self.fireEngines()
+    
+    def fireEngines(self):
+        if self.engines_on[0]:
+            vectors = self.forward_axis_to_cords()
+            self.gravP[0] += vectors[0]*self.engines_on[0]*self.max_forward_speed
+            self.gravP[1] += vectors[1]*self.engines_on[0]*self.max_forward_speed
+        if self.engines_on[1]:
+            self.rotational_speed += self.max_turn_speed*self.engines_on[1]
 
-    def fireForwardEngine(self):
-        self.grav[0] += objects.math.cos(self.forward_axis)
-        self.grav[1] += objects.math.sin(self.forward_axis)
-    
-    def fireReverseEngine(self):
-        self.grav[0] -= objects.math.cos(self.forward_axis)
-        self.grav[1] -= objects.math.sin(self.forward_axis)
-    
-    def fireLeftTuringinEngine(self):
-        self.rotational_speed += self.turnspeed
 
-    def fireRightTurningEngine(self):
-        self.rotational_speed -= self.turnspeed
-    
     def moveonG(self):
         super().moveonG()
         self.forward_axis += self.rotational_speed/10
@@ -64,7 +65,7 @@ class playerCharecter(objects.gravobj):
 if __name__ == "__main__":
     me = playerCharecter(1,1,1)
 
-#wasd = 119, 97, 115, 100
+#w,a,s,d = 119, 97, 115, 100
 
     
 
