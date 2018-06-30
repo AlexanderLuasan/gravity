@@ -40,7 +40,7 @@ class playerCharecter(objects.gravobj):
         self.max_turn_speed = .01
         self.max_forward_speed = .01 #these last two can be upgraded by purchases later
         self.engines_on = [0,0] #represents the forward/back, and left/right engines.
-        #0 = off, value = percentage of max burn, 1 being max. positive = forward/
+        #0 = off, value = percentage of max burn, 1 being max. positive = forward/left, negative = back/right
     
     def forward_axis_to_cords(self):
         return [objects.math.cos(self.forward_axis),objects.math.sin(self.forward_axis)]
@@ -64,6 +64,8 @@ class playerCharecter(objects.gravobj):
 
 if __name__ == "__main__":
     me = playerCharecter(1,1,1)
+    print(me.pos[0])
+    print(me.pos[1])
 
 #w,a,s,d = 119, 97, 115, 100
 
