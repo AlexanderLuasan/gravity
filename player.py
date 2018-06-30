@@ -33,25 +33,27 @@ class playerCharecter(objects.gravobj):
         super.__init__()
         self.hull_health = 1
         self.shield = 0
-        self.rotational_speed = 0 #im going to measure this in radians per 10 frames. Positive value = clockwise, negative value =  counter clockwise
-        self.forward = objects.math.pi / 2 #this is what "forward" is relative to the player's ship.
+        self.rotational_speed = 0 #im going to measure this in radians per 10 frames. Positive value = counter clockwise, negative value = clockwise
+        self.forward_axis = objects.math.pi / 2 #this is what "forward" is relative to the player's ship measured in radians
+        self.turnspeed = 1
+        self.forwardspeed = 1 #these can be upgraded by purchases later
     
-    def fireEngines(self):
-        self.
+    def fireForwardEngine(self):
+        self.gravP[0] += objects.math.cos(self.forward_axis)
+        self.gravP[1] += objects.math.sin(self.forward_axis)
+
+    
+    def fireLeftTuringinEngine(self):
+        self.rotational_speed -= self.turnspeed
+
+    def fireRightTurningEngine(self):
+        self.rotational_speed += self.turnspeed
     
     def moveonG(self):
         super.moveonG()
-        self.forward = 
+        self.forward_axis += self.rotational_speed/10
 
 
-
-    
-
-    
-
-
-
-#how do i deal with engines
     
 #wasd = 119, 97, 115, 100
 
