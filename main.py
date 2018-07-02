@@ -77,5 +77,13 @@ while (True != done):
     visual.drawList(gravList)
     visual.drawEnd()
     pygame.display.flip()
+    for first in gravList:
+        for second in gravList:
+            if first!=second:
+                try:
+                    print(first.colision(second))
+                except:
+                    pass
+    
     clock.tick(30)
 pygame.quit()
