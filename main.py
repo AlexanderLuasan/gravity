@@ -54,8 +54,11 @@ while (True != done):
                 elif event.key == 100:
                     world.player_charecter.engines_on[1] -= 1
                 elif event.key == 32:
-                    print(visual.camra.getx, visual.camra.gety)
+                    #print(visual.camra.getx, visual.camra.gety) this doesn't work, for some reason.
+                    #Needed to resort to:
+                    print((visual.camra.x, visual.camra.y))
                     print(world.player_charecter.pos)
+                    visual.camra.center_on(world.player_charecter)
                 else:
                     print(event.key)
 

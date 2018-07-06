@@ -14,3 +14,6 @@ class cammera():
         return self.x
     def gety(self):
         return self.y
+    def center_on(self, obj):
+        "centers the cammera on the gravobj in the argument"
+        (self.x, self.y) = (obj.pos[0] - 500, obj.pos[1] - 500)
