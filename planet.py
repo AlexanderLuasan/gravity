@@ -11,7 +11,7 @@ class simpleSpaceObj(objects.gravobj): #has features of colision needed for most
             return(None)
         distance=((self.pos[0]-other.pos[0])**2 + (self.pos[1]-other.pos[1])**2)**.5
         
-        if distance<threshHold:
+        if distance<=threshHold:
             return True
         else:
             return False

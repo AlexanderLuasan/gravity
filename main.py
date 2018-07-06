@@ -81,7 +81,8 @@ while (True != done):
         for second in gravList:
             if first!=second:
                 try:
-                    print(first.colision(second))
+                    #print(first.colision(second))
+                    pass
                 except:
                     pass
     
