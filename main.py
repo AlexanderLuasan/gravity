@@ -53,6 +53,10 @@ while (True != done):
                     world.player_charecter.engines_on[1] += 1
                 elif event.key == 100:
                     world.player_charecter.engines_on[1] -= 1
+                elif event.key ==102:
+                    print((visual.camra.x, visual.camra.y))
+                    print((world.player_charecter.pos[0], world.player_charecter.pos[1]))
+                    #(visual.camra.x, visual.camra.y) = (world.player_charecter.pos[0], world.player_charecter.pos[1])
                 elif event.key == 32:
                     #print(visual.camra.getx, visual.camra.gety) this doesn't work, for some reason.
                     #Needed to resort to:
