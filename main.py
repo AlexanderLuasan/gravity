@@ -57,9 +57,8 @@ while (True != done):
                     print((visual.camra.x, visual.camra.y))
                     print((world.player_charecter.pos[0], world.player_charecter.pos[1]))
                     #(visual.camra.x, visual.camra.y) = (world.player_charecter.pos[0], world.player_charecter.pos[1])
-                elif event.key == 32:
-                    #print(visual.camra.getx, visual.camra.gety) this doesn't work, for some reason.
-                    #Needed to resort to:
+                elif event.key == 32: 
+                    #this doesn't work, for some reason. Needed to resort to:
                     print((visual.camra.x, visual.camra.y))
                     print(world.player_charecter.pos)
                     visual.camra.center_on(world.player_charecter)
